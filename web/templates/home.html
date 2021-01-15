@@ -2,9 +2,32 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Author Map</title>
 </head>
-<body>
-Hello world
+<body style="background-color: palegoldenrod;">
+
+    <div style="text-align:center">
+        <h1 style="color: darkorange; font-size:230%;font-family: Castellar;">Author Map</h1>
+        <h3 style="color:DodgerBlue; font-size:180%;font-family: Arial;">  Author Information</h3>
+        <form method="POST" action="">
+        <textarea name="textbox" placeholder="Author's name"></textarea>
+        <button type="submit" name="submit">Submit</button>
+        </form>
+        <h4>Results</h4>
+<!--        if results found then print the table, else show another msg-->
+        <p>Table of all related authors</p>
+        <h3 style="color:DodgerBlue; font-size:180%;font-family:Arial;">  Co-author Network</h3>
+        <p>  Please enter names of the 2 authors separated by a comma "," </p>
+        <form method="POST" action="">
+        <textarea name="textbox" placeholder="Name_1 , Name_2"></textarea>
+        <button type="submit" name="submit">Submit</button>
+        </form>
+        <!--        if results found then print the table, else show another msg-->
+        <h4>Results</h4>
+        <p> then give option to save</p>
+
+
+    </div>
+
 </body>
 </html>
