@@ -1,7 +1,7 @@
 from typing import List,  Dict, Tuple
 from itertools import combinations
 import graphviz
-
+import os
 
 # Task 2: Task 2 - Finding the Shared Work for All-Pairs of Authors (1 pt)
 
@@ -63,6 +63,11 @@ class auth_network():
 
 
     def _get_different_authors(self):
+        """
+        helper function to extract all different authors from self.data (the dictionary that was given
+        upon initialisation
+        :return: list of different authors
+        """
         result = set()
         for pair in self.data.keys():
             result.add(pair[0])
@@ -70,6 +75,12 @@ class auth_network():
         return list(result)
 
     def build_network(self, enable_annotations: bool = True) -> graphviz.Graph:
+        """
+        Creates a undircrected graph from the given data. Also allows to turn off the annotation
+        (numbers next to the edges and varying line thickness). The graphviz.Graph object is then returned.
+        :param enable_annotations:
+        :return: Constructed Graph as graphviz.Graph
+        """
         graphobject = graphviz.Graph("Authornetwork")
 
         # adding nodes
@@ -78,7 +89,7 @@ class auth_network():
 
         # adding edges
         for authors,count in self.data.items():
-            print(authors[0])
+            #print(authors[0])
             if enable_annotations:
                 graphobject.edge(authors[0],authors[1], label=str(count), penwidth=str(count))
             else:
@@ -86,18 +97,38 @@ class auth_network():
 
         return graphobject
 
+    # Add additional functionality so that one can visualize the network
+    # def show_graph(graph: graphviz.Graph)
+
+
+    # graph: graphviz.Graph,
+    # Allow one to be able to export the network in several formats including png, jpg, svg, and pdf
+    def save_graph(self,format: str = "png",view=False):
+        #where save the graph? Cache?
+        folder=""
+        viable_formats=["png", "jpg", "svg", "pdf"]
+
+        if format.startswith("."):
+            format=format[1:]
+        if format not in  viable_formats:
+            return False
+        filename="Authorgraph"
+        print(filename)
+        self.graph.render( filename,format=format,view=view,cleanup=True)#os.path.join(folder,
+        return True
 
 test_data={("Ilya","Marlo"):3,("Pragya","Dhruv"):4,("Marlo","Dhruv"):2,("Ilya","Dhruv"):1,("Pragya","Ilya"):7}
+
 testobj=auth_network(test_data)
 print("Created")
-testobj.graph.render("testimage.gv",view=True)
+testobj.save_graph("pdf")
 
 
 
 
-# def show_graph(graph: graphviz.Graph)
-# def save_graph(graph: graphviz.Graph, format: str = "png")
 
-# Add additional functionality so that one can visualize the network
 
-# Allow one to be able to export the network in several formats including png, jpg, svg, and pdf
+
+
+
+
