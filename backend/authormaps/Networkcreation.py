@@ -12,8 +12,8 @@ def get_publications_for_pair(authors: Tuple[str, str]) -> List[str]:
    :param authors: Tuple of two authors
    :return: A list of publications that both authors are involved in
    """
-    authors1_publications = None  # get_list_of_publications(authors[0])
-    authors2_publications = None  # get_list_of_publications(authors[1])
+    authors1_publications = None# get_list_of_publications(authors[0])
+    authors2_publications = None# get_list_of_publications(authors[1])
     # return intersection between authors1_publications  and authors2_publications
     return list(set(authors1_publications) & set(authors2_publications))
 
@@ -58,15 +58,22 @@ def count_shared_publications(authors: List[str]) -> Dict[Tuple[str, str], int]:
 
 class auth_network():
     def __init__(self, shared_publications_counts: Dict[Tuple[str, str], int], enable_annotations: bool = True):
+        """
+        Creates a authormap as grphviz graph
+        :param shared_publications_counts: Dictionary of tuples author names as key and the number of shared
+        publications as values (int).
+        :param enable_annotations: Switch for the annotation of the Network with the labels of the edges and a change
+        in line thickness.
+        """
         self.data = shared_publications_counts
         self.graph = self.build_network(enable_annotations)
 
 
     def _get_different_authors(self):
         """
-        helper function to extract all different authors from self.data (the dictionary that was given
-        upon initialisation
-        :return: list of different authors
+        Helper function to extract all different authors from self.data (the dictionary that was given
+        upon initialisation.
+        :return: List of different authors.
         """
         result = set()
         for pair in self.data.keys():
@@ -99,7 +106,12 @@ class auth_network():
 
     # Add additional functionality so that one can visualize the network
     # def show_graph(graph: graphviz.Graph)
-
+    def visualize_as_string(self) -> str:
+        """
+        Visualises the stored graph as a string with all the attributes of graphviz
+        :return: String with all the nodes, edges and their attributes
+        """
+        return self.graph.source
 
     # graph: graphviz.Graph,
     # Allow one to be able to export the network in several formats including png, jpg, svg, and pdf
@@ -121,6 +133,7 @@ test_data={("Ilya","Marlo"):3,("Pragya","Dhruv"):4,("Marlo","Dhruv"):2,("Ilya","
 
 testobj=auth_network(test_data)
 print("Created")
+print(testobj.visualize_as_string())
 testobj.save_graph("pdf")
 
 
