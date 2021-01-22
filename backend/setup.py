@@ -4,7 +4,7 @@
 
 from setuptools import setup, find_packages
 
-requirements = []
+requirements = ["pylint", "git-pylint-commit-hook"]
 
 test_requirements = ['pytest>=3']
 
