@@ -1,7 +1,7 @@
 from typing import List,  Dict, Tuple
 from itertools import combinations
 import graphviz
-import os
+
 
 # Task 2: Task 2 - Finding the Shared Work for All-Pairs of Authors (1 pt)
 
@@ -57,16 +57,17 @@ def count_shared_publications(authors: List[str]) -> Dict[Tuple[str, str], int]:
 # shared publications i.e. the more publications shared between the pair of authors, the thicker the edge
 
 class auth_network():
-    def __init__(self, shared_publications_counts: Dict[Tuple[str, str], int], enable_annotations: bool = True):
+    def __init__(self, shared_publications_counts: Dict[Tuple[str, str], int], enable_annotations: bool = True,max_penwidth = 12):
         """
         Creates a authormap as grphviz graph
         :param shared_publications_counts: Dictionary of tuples author names as key and the number of shared
         publications as values (int).
         :param enable_annotations: Switch for the annotation of the Network with the labels of the edges and a change
         in line thickness.
+        :param max_penwidth: Maximum width of the edges in the graph. this will be the scale for all entries.
         """
         self.data = shared_publications_counts
-        self.graph = self.build_network(enable_annotations)
+        self.graph = self.build_network(enable_annotations,max_penwidth=max_penwidth)
 
 
     def _get_different_authors(self):
@@ -81,11 +82,12 @@ class auth_network():
             result.add(pair[1])
         return list(result)
 
-    def build_network(self, enable_annotations: bool = True) -> graphviz.Graph:
+    def build_network(self, enable_annotations: bool = True,max_penwidth = 12) -> graphviz.Graph:
         """
         Creates a undircrected graph from the given data. Also allows to turn off the annotation
         (numbers next to the edges and varying line thickness). The graphviz.Graph object is then returned.
         :param enable_annotations:
+        :param max_penwidth: Maximum width of the edges in the graph. this will be the scale for all entries.
         :return: Constructed Graph as graphviz.Graph
         """
         graphobject = graphviz.Graph("Authornetwork")
@@ -94,13 +96,17 @@ class auth_network():
         for author in self._get_different_authors():
             graphobject.node(author, author)
 
+        highest_number = max(self.data.values())
+
         # adding edges
         for authors,count in self.data.items():
             #print(authors[0])
             if enable_annotations:
-                graphobject.edge(authors[0],authors[1], label=str(count), penwidth=str(count))
+                print(highest_number,count,max_penwidth)
+                graphobject.edge(authors[0],authors[1], label=str(count),
+                                 penwidth=str((count/highest_number)*max_penwidth))
             else:
-                graphobject.edge((authors[0],authors[1]))
+                graphobject.edge(authors[0],authors[1])
 
         return graphobject
 
@@ -131,7 +137,7 @@ class auth_network():
 
 test_data={("Ilya","Marlo"):3,("Pragya","Dhruv"):4,("Marlo","Dhruv"):2,("Ilya","Dhruv"):1,("Pragya","Ilya"):7}
 
-testobj=auth_network(test_data)
+testobj=auth_network(test_data,enable_annotations=False)
 print("Created")
 print(testobj.visualize_as_string())
 testobj.save_graph("pdf")
