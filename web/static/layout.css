@@ -1,0 +1,32 @@
+body {
+    background: #2b2d2d;
+    color: #eaf1f2;
+    font-family: 'Anton', sans-serif;
+    font-variant: small-caps;
+    font-size: 1.75em;
+    text-align: center;
+    margin: 0;
+}
+
+ul {
+    -webkit-column-count: 3;
+    -moz-column-count: 3;
+    column-count: 3;
+}
+
+h1 {
+    color: darkorange;
+    font-size:230%;
+    font-family: Castellar;
+}
+
+.textbox {
+    width: 400px;
+    height: 500px;
+    padding: 5px;
+    border: 3px solid #f2f2f2;
+    border-radius: 10px;
+    margin-right: 10px;
+}
+
+
