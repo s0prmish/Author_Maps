@@ -91,7 +91,7 @@ class AuthorNetwork:
 test_data = {("Ilya", "Marlo"): 3, ("Pragya", "Dhruv"): 4, ("Marlo", "Dhruv"): 2, ("Ilya", "Dhruv"): 1,
              ("Pragya", "Ilya"): 7}
 
-testobj = AuthorNetwork(test_data)  # ,enable_annotations=False)
-print("Created")
-print(testobj.visualize_as_string())
-testobj.save_graph("pdf", view=True)
+#testobj = AuthorNetwork(test_data)  # ,enable_annotations=False)
+#print("Created")
+#print(testobj.visualize_as_string())
+#testobj.save_graph("pdf", view=True)
