@@ -6,31 +6,33 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" media="screen">
 <!--    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='layout.css')}}"/>-->
-    <style type="text/css">
-      .container {
-        max-width: 700px;
-      }
-      h2 {color: #ff0000;}
-      body {
-        background: #2b2d2d;
-        color: #eaf1f2;
-        font-family: 'Calibri', sans-serif;
-        font-size: 1.75em;
-        text-align: center;
-        margin: 0;
-        }
+    <link rel="stylesheet" type="text/css" href="../static/layout.css"/>
 
-      ol {
-            -webkit-column-count: 3;
-            -moz-column-count: 3;
-            column-count: 3;
-            list-style: none;
-        }
-      li{
-            list-style-position:inside;
-            border: 1px solid black;
-        }
-    </style>
+<!--    <style type="text/css">-->
+<!--      .container {-->
+<!--        max-width: 700px;-->
+<!--      }-->
+<!--      h2 {color: #ff0000;}-->
+<!--      body {-->
+<!--        background: #2b2d2d;-->
+<!--        color: #eaf1f2;-->
+<!--        font-family: 'Calibri', sans-serif;-->
+<!--        font-size: 1.75em;-->
+<!--        text-align: center;-->
+<!--        margin: 0;-->
+<!--        }-->
+
+<!--      ol {-->
+<!--            -webkit-column-count: 3;-->
+<!--            -moz-column-count: 3;-->
+<!--            column-count: 3;-->
+<!--            list-style: none;-->
+<!--        }-->
+<!--      li{-->
+<!--            list-style-position:inside;-->
+<!--            border: 1px solid black;-->
+<!--        }-->
+<!--    </style>-->
 </head>
 <body>
     <nav class="navbar navbar-inverse" role="navigation">
@@ -42,15 +44,15 @@
       </div>
     </nav>
     <div style="text-align:center">
-        <h1 style="color: darkorange; font-size:230%;font-family: Castellar;">&diams; Author Map &diams;</h1>
-        <h3 style="color:DodgerBlue; font-size:180%;font-family: Arial;">  Author Information</h3>
+        <h1 >&diams; Author Map &diams;</h1>
+        <h3 >  Author Information</h3>
         <form method="POST" action="/info">
             <input name="author" type="author" placeholder="Author's name" >
             <button type="submit" name="submit">Submit</button>
         </form>
 
         <div>
-            <h4 style="color:DodgerBlue; font-size:120%;font-family: Arial;">Results</h4>
+            <h4>Results</h4>
             {{msg}}
             <ol>
                 {% for element in res %}
