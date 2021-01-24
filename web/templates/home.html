@@ -5,7 +5,6 @@
     <title>Author Map</title>
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" media="screen">
-<!--    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='layout.css')}}"/>-->
     <link rel="stylesheet" type="text/css" href="../static/layout.css"/>
 
 <!--    <style type="text/css">-->
@@ -47,35 +46,41 @@
         <h1 >&diams; Author Map &diams;</h1>
         <h3 >  Author Information</h3>
         <form method="POST" action="/info">
-            <input name="author" type="author" placeholder="Author's name" >
+            <input name="author" type="author" placeholder="Author's name" class="textbox">
             <button type="submit" name="submit">Submit</button>
         </form>
 
         <div>
             <h4>Results</h4>
             {{msg}}
-            <ol>
-                {% for element in res %}
-                <li>
-                    <div class="custom-control custom-checkbox">
-                        <input type="checkbox" class="custom-control-input" id="customCheck1">
-                        <label class="custom-control-label" for="customCheck1">{{ element | safe }}</label>
-                    </div>
-                </li>
-                {% endfor %}
-            </ol>
+            <form method="POST" action="/choose">
+                <ol>
+                    {% for element in res %}
+                    <li>
+                           {{element}} <input type="checkbox" name="check" value={{element}}>
+                    </li>
+                    {% endfor %}
+                </ol>
+                <h4>{{next_msg}}</h4>
+                {% if next_msg %}
+                    <p>Please select any 2 co-authors from the network above and then press Submit
+                    </p>
+                        <button type="submit" name="submit">Submit</input>
+                    {{sel}}
+                {% endif %}
+             </form>
             <br>
         </div>
-        <h4>{{next_msg}}</h4>
-        {% if next_msg %}
-            <p>
-                Please select any 2 co-authors from the network above and then press Submit
-            </p>
-            <form method="POST" action="/choice">
-                <button type="submit" name="submit">Submit</button>
-            </form>
-        {% endif %}
+
+<!--            <form method="POST" action="/choose">-->
+<!--                <button type="submit" name="submit">Submit</input>-->
+<!--            </form>-->
+
+
+
+
     </div>
+
 
 </body>
 </html>

@@ -15,7 +15,7 @@ app.secret_key = "someSecretKey"
 
 @app.route("/")
 def home():
-    return render_template('home.html',msg='',li=[],next_msg='')
+    return render_template('home.html',msg='',li=[],next_msg='',sel=[])
 
 @app.route("/about")
 def upload():
@@ -32,18 +32,13 @@ def display_data():#home_info():
             if type(li) == list:
                 li = data.get_list_of_coauthors()
                 co_msg="Would you like to see Co-author Network?"
-                return render_template('home.html', msg="The Co-author list for {} is:\n".format(seq), res=sorted(li),next_msg=co_msg)
+                return render_template('home.html', msg="The Co-author list for {} is:\n".format(seq), res=sorted(li),next_msg=co_msg,sel=[])
 
             else:
-                return render_template('home.html', msg="The author {} does not have any associated co-author's".format(seq), res="",next_msg='')#df.to_html())
+                return render_template('home.html', msg="The author {} does not have any associated co-author's".format(seq), res="",next_msg='',sel=[])
 
         else:
-            return render_template('home.html',msg="Please enter it in the specified format",res="",next_msg='')   #I don't understand why this isn't working
-#
-# @app.route('/choice', methods=['GET', 'POST'])
-# def display_data():#home_info():
-#     if request.method == 'POST':
-#         author_names=request.form.get("author")
+            return render_template('home.html',msg="Please enter it in the specified format",res="",next_msg='',sel=[])   #I don't understand why this isn't working
 
 
 
@@ -51,6 +46,15 @@ def display_data():#home_info():
 def allowed_file(filename):
     return '.' in filename and \
            filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+
+@app.route('/choose', methods=['GET', 'POST'])
+def coauthor_map():
+    if request.method == 'POST':
+        # print(request.form['check'])
+        selected = request.form.getlist('check')
+        any_selected = bool(selected)
+        print(selected,any_selected)
+        return render_template('home.html',sel=selected,res="",next_msg='',msg='')
 
 if __name__ == '__main__':
     app.run(debug=True)
