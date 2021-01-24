@@ -26,13 +26,14 @@ def display_data():#home_info():
     if request.method == 'POST':
         seq=request.form.get("author")
         if type(seq) == str: #isinstance(seq, str):
-            data = AuthorData(seq,5)   #make changes here
+            data = AuthorData(seq)   #make changes here
             li = data.get_list_of_coauthors()
 
             if type(li) == list:
                 li = data.get_list_of_coauthors()
+                info="The total number of Co-author's for {} is : {} . The co-author list is given below:".format(seq,len(li))
                 co_msg="Would you like to see Co-author Network?"
-                return render_template('home.html', msg="The Co-author list for {} is:\n".format(seq), res=sorted(li),next_msg=co_msg,sel=[])
+                return render_template('home.html', msg=info, res=sorted(li),next_msg=co_msg,sel=[])
 
             else:
                 return render_template('home.html', msg="The author {} does not have any associated co-author's".format(seq), res="",next_msg='',sel=[])
@@ -63,3 +64,4 @@ if __name__ == '__main__':
 
 #data = AuthorData('William Joyce')
 # Svjetlana Miocinovic
+# Andrew Miller
