@@ -4,7 +4,7 @@
 
 from setuptools import setup, find_packages
 
-requirements = []
+requirements = ['Bio' , 'typing' , 'pathlib']
 
 test_requirements = ['pytest>=3']
 
