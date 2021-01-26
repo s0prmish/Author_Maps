@@ -11,7 +11,7 @@ Entrez.email = 'rathodhruv007@gmail.com'
 
 class AuthorData:
     """Downloads Author data as json and provides co-author information."""
-    def __init__(self, author_name=None,IDs_to_retrive=9999):
+    def __init__(self, author_name=None):
 
         self.author = author_name
         self.AUTHOR_DIR = os.path.join(DATA_DIR, self.author)
@@ -57,7 +57,7 @@ class AuthorData:
                     with open(fp, 'w') as fout:
                         json.dump(i, fout)
 
-    def get_list_of_coauthors_from_list_of_publications(self, publications: List['PMID']) -> List[str]:
+    def get_list_of_coauthors_from_list_of_publications(self) -> List[str]:
         """
         Creates the list of co-authors. Deleted duplicates.
         :param publications:List of PMIDs
@@ -81,7 +81,7 @@ class AuthorData:
         Creates the list of co-authors from author name
         :return: List of co-authors
         """
-        co_authors = self.get_list_of_coauthors_from_list_of_publications(self.get_list_of_publications())
+        co_authors = self.get_list_of_coauthors_from_list_of_publications()
         if co_authors == []:
             os.rmdir(self.AUTHOR_DIR)
             return "No such author found"
@@ -89,7 +89,7 @@ class AuthorData:
             print(co_authors)
             return co_authors
 
-d=AuthorData('Nasioudis Andreas')
+d=AuthorData('Svjetlana Miocinovic')
 d.get_list_of_coauthors()
 
 #for author not found
