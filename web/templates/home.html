@@ -31,7 +31,7 @@
                 <ol>
                     {% for element in res %}
                     <li>
-                           {{element}} <input type="checkbox" name="check" value={{element}}>
+                           {{element}} <input type="checkbox" name="check" value="{{element}}">
                     </li>
                     {% endfor %}
                 </ol>
@@ -40,11 +40,16 @@
                     <p>Please select any 2 co-authors from the network above and then press Submit
                     </p>
                         <button type="submit" name="submit">Submit</input>
-                    {{sel}}
                 {% endif %}
              </form>
             <br>
         </div>
+        {{info}}
+        {% if info %}
+            works?
+            {{ol}}
+            Should've displayed a graph
+        {% endif %}
     </div>
 
 

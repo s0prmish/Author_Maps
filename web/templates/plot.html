@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Plot Network</title>
+    <link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link rel="stylesheet" type="text/css" href="../static/layout.css"/>
+</head>
+<body>
+    <br>
+<!--    <nav class="navbar navbar-inverse" role="navigation">-->
+<!--      <div class="container-fluid">-->
+<!--        <div class="navbar-header">-->
+<!--          <a class="navbar-brand" href="/">Home</a>-->
+<!--          <a class="navbar-brand" href="/about">About</a>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </nav>-->
+    <h3> {{info}} </h3>
+    <a href="data:image/png;base64, {{ op }}" download>
+        <img src="data:image/png;base64,{{op|safe}}" />
+    </a>
+    <br>
+    <p>Click on the image to download it</p>
+    <!--<img src="data:image/png;base64,{{op|safe}}" />-->
+    <br>
+    <br>
+    <p>Go back to <a href="/">home</a> page</p>
+<body>
+</html>

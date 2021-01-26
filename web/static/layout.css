@@ -1,18 +1,23 @@
 body {
         background: #2b2d2d;
+        /*background-image: url("../static/images/background.jpg");*/
+        /*background-position: top left;*/
+        background-size: auto;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
         color: #eaf1f2;
-        font-family: 'Calibri', sans-serif;
+        font-family: Arial;
         font-size: 1.8em;
         text-align: center;
         margin: 0;
         }
 
 ol {
-            -webkit-column-count: 3;
-            -moz-column-count: 3;
-            column-count: 3;
-            list-style: none;
-        }
+    -webkit-column-count: 3;
+    -moz-column-count: 3;
+    column-count: 3;
+    list-style: none;
+    }
 
 li {
     list-style-position:inside;
@@ -26,17 +31,17 @@ h1 {
     }
 
 
-h3{
+h3 {
     color:DodgerBlue;
     font-size:180%;
     font-family: Arial;
-}
+    }
 
-h4{
+h4 {
     color:DodgerBlue;
     font-size:120%;
     font-family: Arial;
-}
+    }
 
 .textbox {
     width: 300px;
@@ -45,6 +50,6 @@ h4{
     border: 3px solid #f2f2f2;
     border-radius: 10px;
     margin-right: 10px;
-}
+    }
 
 
