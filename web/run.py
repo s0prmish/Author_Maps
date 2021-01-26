@@ -55,19 +55,19 @@ def coauthor_map():
             # some check boxes are checked
             if len(selected)==2:
                 # display the graph
-                # dic=count_shared_publications(selected)
+                dic=count_shared_publications(selected)
                 # testobj = AuthorNetwork(dic)
                 # graph=testobj.visualize_as_string()
-                test_data = {("Ilya", "Marlo"): 3, ("Pragya", "Dhruv"): 4, ("Marlo", "Dhruv"): 2, ("Ilya", "Dhruv"): 1,
-                             ("Pragya", "Ilya"): 7}
-                testobj = AuthorNetwork(test_data)  # ,enable_annotations=False)
+                # test_data = {("Ilya", "Marlo"): 3, ("Pragya", "Dhruv"): 4, ("Marlo", "Dhruv"): 2, ("Ilya", "Dhruv"): 1,
+                #              ("Pragya", "Ilya"): 7}
+                testobj = AuthorNetwork(dic)  # ,enable_annotations=False)
                 graph=testobj.build_network()
-                print(type(graph))
+                # print(type(graph))
                 # testobj.save_graph("pdf", view=True)
-                print("works")
+                # print("works")
                 chart_output = graph.pipe(format='png')
                 chart_output = base64.b64encode(chart_output).decode('utf-8')
-                print("should have printed")
+                # print("should have printed")
                 return render_template('plot.html', op=chart_output,info="The Co-author Network ")
             else:
                 # display msg to select only 2 checkboxes
@@ -79,6 +79,8 @@ def coauthor_map():
 
 
 if __name__ == '__main__':
+    Link = 'http://127.0.0.1:5000'
+    print(f"{Link} ")
     app.run(debug=True)
 
 
