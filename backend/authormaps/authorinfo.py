@@ -5,11 +5,9 @@ from pathlib import Path
 import json
 from Bio import Medline
 
-Entrez.email = 'rathodhruv007@gmail.com'
+from authormaps.startup import DATA_DIR
 
-home_dir = str(Path.home())
-PROJECT_DIR = os.path.join(home_dir, ".project", "group5")
-DATA_DIR = os.path.join(PROJECT_DIR,"data")
+Entrez.email = 'rathodhruv007@gmail.com'
 
 class AuthorData:
     """Downloads Author data as json and provides co-author information."""
@@ -88,12 +86,13 @@ class AuthorData:
             os.rmdir(self.AUTHOR_DIR)
             return "No such author found"
         else:
-            # print(co_authors)
+            print(co_authors)
             return co_authors
 
-d=AuthorData('Svjetlana Miocinovic')
+d=AuthorData('Nasioudis Andreas')
 d.get_list_of_coauthors()
 
 #for author not found
 # d=AuthorData('xcfgsfg')
 # d.get_list_of_coauthors()
+# print(DATA_DIR)
