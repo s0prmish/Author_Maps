@@ -89,8 +89,8 @@ class AuthorData:
             print(co_authors)
             return co_authors
 
-d=AuthorData('Svjetlana Miocinovic')
-d.get_list_of_coauthors()
+# d=AuthorData('Svjetlana Miocinovic')
+# d.get_list_of_coauthors()
 
 #for author not found
 # d=AuthorData('xcfgsfg')
