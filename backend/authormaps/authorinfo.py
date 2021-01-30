@@ -44,7 +44,7 @@ class AuthorData:
             if str(i) + ".json" in os.listdir(self.AUTHOR_DIR):
                 pass
             else:
-                print('downloading')
+                # print('downloading')
                 record_list = []
 
                 for i in ids:
