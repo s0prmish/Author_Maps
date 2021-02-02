@@ -40,22 +40,19 @@ class AuthorData:
         :return: None
         """
         ids = self.get_list_of_publications()
+        record_list = []
         for i in ids:
             if str(i) + ".json" in os.listdir(self.AUTHOR_DIR):
                 pass
             else:
-                # print('downloading')
-                record_list = []
+                h = Entrez.efetch(db="pubmed", id=i, rettype="medline", retmode="text")
+                records = Medline.parse(h)
+                record_list.extend(list(records))
 
-                for i in ids:
-                    h = Entrez.efetch(db="pubmed", id=i, rettype="medline", retmode="text")
-                    records = Medline.parse(h)
-                    record_list.extend(list(records))
-
-                for i in record_list:
-                    fp = os.path.join(self.AUTHOR_DIR, str(i['PMID']) + ".json")
-                    with open(fp, 'w') as fout:
-                        json.dump(i, fout)
+        for i in record_list:
+            fp = os.path.join(self.AUTHOR_DIR, str(i['PMID']) + ".json")
+            with open(fp, 'w') as fout:
+                json.dump(i, fout)
 
     def get_list_of_coauthors_from_list_of_publications(self) -> List[str]:
         """
@@ -89,8 +86,8 @@ class AuthorData:
             print(co_authors)
             return co_authors
 
-# d=AuthorData('Svjetlana Miocinovic')
-# d.get_list_of_coauthors()
+d=AuthorData('William joyce')
+d.get_list_of_coauthors()
 
 #for author not found
 # d=AuthorData('xcfgsfg')
