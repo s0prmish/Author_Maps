@@ -11,9 +11,9 @@ class TestAuthorData:
     """ Unit tests for AuthorData class"""
 
     def test_get_list_of_publications(self):
-        assert type(test_data1.get_list_of_publications())==Bio.Entrez.Parser.ListElement
-        assert type(test_data2.get_list_of_publications()) == Bio.Entrez.Parser.ListElement
-        assert type(test_data3.get_list_of_publications()) == Bio.Entrez.Parser.ListElement
+        assert type(test_data1.get_list_of_publications())==list
+        assert type(test_data2.get_list_of_publications()) == list
+        assert type(test_data3.get_list_of_publications()) == list
 
         assert len(test_data1.get_list_of_publications())==0
         assert len(test_data2.get_list_of_publications()) >= 1
@@ -21,12 +21,12 @@ class TestAuthorData:
 
     def test_get_list_of_coauthors(self):
         if test_data1.get_list_of_coauthors==[]:
-            assert os.path.isdir(test_data1.AUTHOR_DIR)==False
+            assert os.path.isdir(test_data1.AUTHOR_DIR)
 
         if test_data2.get_list_of_coauthors!=[]:
-            assert os.path.isdir(test_data2.AUTHOR_DIR)==True
+            assert os.path.isdir(test_data2.AUTHOR_DIR)
 
         if test_data3.get_list_of_coauthors!=[]:
-            assert os.path.isdir(test_data3.AUTHOR_DIR)!=True
+            assert os.path.isdir(test_data3.AUTHOR_DIR)
 
 
