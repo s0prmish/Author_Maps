@@ -29,9 +29,9 @@ class AuthorData:
         term = self.author + type_
         handle = Entrez.esearch(db="pubmed", term=term,retmax=self.retmax)
         record = Entrez.read(handle)
-        idlist = record['IdList']
-        # print('Number of ids requested : {} '.format(self.retmax))
-        # print('Number of ids available on NCBI : {}'.format(len(idlist)))
+        idlist=[]
+        for id in record['IdList']:
+            idlist.append(id)
         return idlist
 
     def __cache_publications(self) -> None:
@@ -81,10 +81,7 @@ class AuthorData:
         co_authors = self.get_list_of_coauthors_from_list_of_publications()
         if co_authors == []:
             os.rmdir(self.AUTHOR_DIR)
-            return "No such author found"
-        else:
-            print(co_authors)
-            return co_authors
+        return co_authors
 
 d=AuthorData('William joyce')
 d.get_list_of_coauthors()
