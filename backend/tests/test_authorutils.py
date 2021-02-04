@@ -79,11 +79,6 @@ class TestAuthorNetwork:
         assert type(content) ==list
         assert content == ["A", "B"] or content == ["B", "A"]
 
-    def test_count_shared_publications(self):
-        pass
-        #test_dat={"A"}
-        ### pass?
-
 
 
 
