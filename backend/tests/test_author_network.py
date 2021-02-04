@@ -38,11 +38,12 @@ class TestAuthorNetwork:
             os.remove(savepath)
         assert not path.exists(savepath)
 
-        tg.save_graph("pdf",view=False)
+        tg.save_graph("pdf", view=False)
 
         assert path.exists(savepath)
         if path.exists(savepath):
             os.remove(savepath)
+
 
 if __name__ == '__main__':
     unittest.main()
