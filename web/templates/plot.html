@@ -7,24 +7,23 @@
     <link rel="stylesheet" type="text/css" href="../static/layout.css"/>
 </head>
 <body>
-    <br>
-<!--    <nav class="navbar navbar-inverse" role="navigation">-->
-<!--      <div class="container-fluid">-->
-<!--        <div class="navbar-header">-->
-<!--          <a class="navbar-brand" href="/">Home</a>-->
-<!--          <a class="navbar-brand" href="/about">About</a>-->
-<!--        </div>-->
-<!--      </div>-->
-<!--    </nav>-->
+    <nav class="navbar navbar-inverse" role="navigation">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="/">Home</a>
+          <a class="navbar-brand" href="/about">About</a>
+        </div>
+      </div>
+    </nav>
     <h3> {{info}} </h3>
-    <a href="data:image/png;base64, {{ op }}" download>
-        <img src="data:image/png;base64,{{op|safe}}" />
+    <a href="data:image/png;base64, {{ op }}" download="Co-author_map">
+        <img src="data:image/png ;base64,{{op|safe}}" />
     </a>
     <br>
     <p>Click on the image to download it</p>
     <!--<img src="data:image/png;base64,{{op|safe}}" />-->
     <br>
-    <br>
-    <p>Go back to <a href="/">home</a> page</p>
+<!--    <br>-->
+<!--    <p>Go back to <a href="/">home</a> page</p>-->
 <body>
 </html>

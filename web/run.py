@@ -4,9 +4,6 @@ from authormaps.networkcreation import AuthorNetwork
 from authormaps.networkutils import count_shared_publications
 from pathlib import Path
 import os,io,base64
-import pandas as pd
-from graphviz import Graph
-
 
 home_dir = str(Path.home())
 PROJECT_DIR = os.path.join(home_dir, ".project", "group5")
@@ -17,6 +14,7 @@ app.secret_key = "someSecretKey"
 
 @app.route("/")
 def home():
+    session.clear()
     return render_template('home.html',msg='',li=[],next_msg='',info='')
 
 @app.route("/about")
@@ -28,9 +26,9 @@ def display_data():#home_info():
     if request.method == 'POST':
         seq=request.form.get("author")
         if type(seq) == str: #isinstance(seq, str):
-            data = AuthorData(seq)   #make changes here
+            session["author_name"]=seq
+            data = AuthorData(seq)
             li = data.get_list_of_coauthors()
-
             if type(li) == list:
                 li = data.get_list_of_coauthors()
                 info="The total number of Co-author's for {} is : {} . The co-author list is given below:".format(seq,len(li))
@@ -55,20 +53,22 @@ def coauthor_map():
             # some check boxes are checked
             if len(selected)==2:
                 # display the graph
-                dic=count_shared_publications(selected)
-                # testobj = AuthorNetwork(dic)
-                # graph=testobj.visualize_as_string()
-                # test_data = {("Ilya", "Marlo"): 3, ("Pragya", "Dhruv"): 4, ("Marlo", "Dhruv"): 2, ("Ilya", "Dhruv"): 1,
-                #              ("Pragya", "Ilya"): 7}
-                testobj = AuthorNetwork(dic)  # ,enable_annotations=False)
-                graph=testobj.build_network()
-                # print(type(graph))
-                # testobj.save_graph("pdf", view=True)
-                # print("works")
-                chart_output = graph.pipe(format='png')
-                chart_output = base64.b64encode(chart_output).decode('utf-8')
-                # print("should have printed")
-                return render_template('plot.html', op=chart_output,info="The Co-author Network ")
+                data = AuthorData(session["author_name"])
+                print("data=",data)
+                coauthors = data.get_list_of_coauthors()
+                print("coauthors=",coauthors)
+                shared_publications = count_shared_publications(coauthors)
+                print("shared_publications=",shared_publications)
+                testobj = AuthorNetwork(shared_publications)
+                print("testobj=",testobj)
+                if testobj is not None:
+                    graph=testobj.build_network()
+                    chart_output = graph.pipe(format='png')
+                    chart_output = base64.b64encode(chart_output).decode('utf-8')
+                    return render_template('plot.html', op=chart_output,info="The Co-author Network for {} and {}".format(selected[0],selected[1]))
+                else:
+                    return render_template('home.html', info="The co-author's {} and {} do not have any relationship".format(selected[0],selected[1]))
+
             else:
                 # display msg to select only 2 checkboxes
                 return render_template('home.html', info="Please select only any 2 co-author's")
