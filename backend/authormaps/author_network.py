@@ -72,6 +72,7 @@ class AuthorNetwork:
 
     # graph: graphviz.Graph,
     # Allow one to be able to export the network in several formats including png, jpg, svg, and pdf
+
     def save_graph(self, output_format: str = "png", view=False):
         # where save the graph? Cache?
 
@@ -91,7 +92,4 @@ class AuthorNetwork:
 test_data = {("Ilya", "Marlo"): 3, ("Pragya", "Dhruv"): 4, ("Marlo", "Dhruv"): 2, ("Ilya", "Dhruv"): 1,
              ("Pragya", "Ilya"): 7}
 
-#testobj = AuthorNetwork(test_data)  # ,enable_annotations=False)
-#print("Created")
-#print(testobj.visualize_as_string())
-#testobj.save_graph("pdf", view=True)
+
