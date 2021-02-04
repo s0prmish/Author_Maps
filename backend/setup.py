@@ -4,7 +4,7 @@
 
 from setuptools import setup, find_packages
 
-requirements = []
+requirements = ["graphviz","unittest","itertools","math","typing"]
 
 test_requirements = ['pytest>=3']
 
