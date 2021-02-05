@@ -73,7 +73,7 @@ class AuthorNetwork:
     # graph: graphviz.Graph,
     # Allow one to be able to export the network in several formats including png, jpg, svg, and pdf
 
-    def save_graph(self, output_format: str = "png", view=False):
+    def save_graph(self, output_format: str = "png", view=False, filename: str = "Authorgraph"):
         # where save the graph? Cache?
 
         viable_formats = ["png", "jpg", "svg", "pdf"]
@@ -82,10 +82,7 @@ class AuthorNetwork:
             output_format = output_format[1:]
         if output_format not in viable_formats:
             return False
-        filename = "Authorgraph"
-        print(filename)
         self.graph.render(filename, format=output_format, view=view, cleanup=True)  # os.path.join(folder,
-        print("Rendered")
         return True
 
 
