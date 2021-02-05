@@ -92,11 +92,14 @@ class AuthorNetwork:
         filename = os.path.join(startup.DATA_DIR,"Authorgraph")
         print(filename)
         self.graph.render(filename, format=output_format, view=view, cleanup=True)  # os.path.join(folder,
+        #print(filename)
+        self.graph.render(filename, format=output_format, view=view, cleanup=True) # os.path.join(folder,
+        #print("Rendered")
         return True
 
 
 #test_data = {("Ilya", "Marlo"): 3, ("Pragya", "Dhruv"): 4, ("Ilya", "Dhruv"): 1,
-            # ("Pragya", "Ilya"): 7}
+            #("Pragya", "Ilya"): 7}
 
 #testnet=AuthorNetwork(test_data,highlight_authors=["Ilya","Pragya"])
 #testnet.save_graph("png")

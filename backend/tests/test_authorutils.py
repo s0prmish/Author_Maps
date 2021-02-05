@@ -65,7 +65,7 @@ class TestAuthorNetwork:
         t5 = "Test5"
         tl = [t1, t2, t3, t4, t5]
         test_dict = networkutils.get_shared_publications_for_authors_pairs(tl, author_data_factory=cd)
-        print(test_dict)
+        #print(test_dict)
         assert type(test_dict) == dict
 
         # check keys
