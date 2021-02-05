@@ -5,7 +5,7 @@
 from setuptools import setup, find_packages
 
 
-requirements = ['Bio','typing','pathlib',"graphviz","unittest","itertools","math","typing"]
+requirements = ['Bio',"graphviz"]
 
 
 test_requirements = ['pytest>=3']

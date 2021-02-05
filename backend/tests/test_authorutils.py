@@ -1,5 +1,5 @@
 import unittest
-from backend.authormaps import networkutils
+from authormaps import networkutils
 
 test_data = {("Ilya", "Marlo"): 3, ("Pragya", "Dhruv"): 4, ("Marlo", "Dhruv"): 2, ("Ilya", "Dhruv"): 1,
              ("Pragya", "Ilya"): 7}

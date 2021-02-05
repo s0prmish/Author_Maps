@@ -3,8 +3,7 @@ from typing import Dict, Tuple
 import os
 import graphviz
 import math
-from backend.authormaps import networkutils
-from backend.authormaps import startup
+from authormaps import startup
 
 # Add wrapper for two author names
 
@@ -80,7 +79,7 @@ class AuthorNetwork:
     # graph: graphviz.Graph,
     # Allow one to be able to export the network in several formats including png, jpg, svg, and pdf
 
-    def save_graph(self, output_format: str = "png", view=False, filename: str = "Authorgraph"):
+    def save_graph(self, output_format: str = "png", view=False, filename: str = None):
         # where save the graph? Cache?
 
         viable_formats = ["png", "jpg", "svg", "pdf"]
@@ -89,12 +88,12 @@ class AuthorNetwork:
             output_format = output_format[1:]
         if output_format not in viable_formats:
             return False
-        filename = os.path.join(startup.DATA_DIR,"Authorgraph")
-        print(filename)
+
+
+        if not filename:
+            filename = os.path.join(startup.DATA_DIR, "Authorgraph")
+
         self.graph.render(filename, format=output_format, view=view, cleanup=True)  # os.path.join(folder,
-        #print(filename)
-        self.graph.render(filename, format=output_format, view=view, cleanup=True) # os.path.join(folder,
-        #print("Rendered")
         return True
 
 

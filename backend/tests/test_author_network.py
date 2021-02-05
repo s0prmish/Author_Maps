@@ -1,6 +1,6 @@
 import unittest
-from backend.authormaps import author_network
-from backend.authormaps import startup
+from authormaps import author_network
+from authormaps import startup
 import graphviz
 from os import path
 import os

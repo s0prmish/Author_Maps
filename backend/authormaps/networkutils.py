@@ -1,8 +1,7 @@
 from typing import List, Dict, Tuple
 from itertools import combinations
 
-# from authormaps.startup import DATA_DIR
-from backend.authormaps.authorinfo import AuthorData
+from authormaps.authorinfo import AuthorData
 
 
 # Task 2: Task 2 - Finding the Shared Work for All-Pairs of Authors (1 pt)
