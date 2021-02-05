@@ -1,8 +1,7 @@
 from typing import List, Dict, Tuple
 from itertools import combinations
 
-# from authormaps.startup import DATA_DIR
-from backend.authormaps.authorinfo import AuthorData
+from authormaps.authorinfo import AuthorData
 
 
 # Task 2: Task 2 - Finding the Shared Work for All-Pairs of Authors (1 pt)
@@ -56,9 +55,21 @@ def count_shared_publications(authors: List[str]) -> Dict[Tuple[str, str], int]:
     """
     For a given list of authors, this function returns a dictionary with the number of shared publications
     between all combinations of given authors. Only one tuple per pair will be created.
-    :param authors:
+    :param authors: List of authors to get data from
     :return: dictionary where keys are made
     """
     shared_publications = get_shared_publications_for_authors_pairs(authors)
     result = {k: len(v) for k, v in shared_publications.items()}
+    return result
+
+
+def count_shared_publications_from_shared_dict(authordict: Dict[Tuple[str, str], List[str]]) -> Dict[
+    Tuple[str, str], int]:
+    """
+    For a given list of authors, this function returns a dictionary with the number of shared publications
+    between all combinations of given authors. Only one tuple per pair will be created.
+    :param authordict: preprocessed  author data as dictionary with a list of shared publications
+    :return: dictionary where keys are made
+    """
+    result = {k: len(v) for k, v in authordict.items()}
     return result

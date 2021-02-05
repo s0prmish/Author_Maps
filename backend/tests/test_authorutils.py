@@ -1,5 +1,5 @@
 import unittest
-from backend.authormaps import networkutils
+from authormaps import networkutils
 
 test_data = {("Ilya", "Marlo"): 3, ("Pragya", "Dhruv"): 4, ("Marlo", "Dhruv"): 2, ("Ilya", "Dhruv"): 1,
              ("Pragya", "Ilya"): 7}
@@ -65,7 +65,7 @@ class TestAuthorNetwork:
         t5 = "Test5"
         tl = [t1, t2, t3, t4, t5]
         test_dict = networkutils.get_shared_publications_for_authors_pairs(tl, author_data_factory=cd)
-        print(test_dict)
+        #print(test_dict)
         assert type(test_dict) == dict
 
         # check keys
@@ -77,6 +77,9 @@ class TestAuthorNetwork:
         content = test_dict[(t1, t3)]
         assert type(content) == list
         assert content == ["A", "B"] or content == ["B", "A"]
+
+        for i,v in test_dict.items():
+            assert len(v)!=0
 
 
 if __name__ == '__main__':
