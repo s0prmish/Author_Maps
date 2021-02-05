@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Plot Network</title>
+    <link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link rel="stylesheet" type="text/css" href="../static/layout.css"/>
+</head>
+<body>
+    <nav class="navbar navbar-inverse" role="navigation">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="/">Home</a>
+          <a class="navbar-brand" href="/about">About</a>
+        </div>
+      </div>
+    </nav>
+    <h3> {{info}} </h3>
+    <img src="data:image/png ;base64,{{op|safe}}" />
+    <h4>Do you want to save the image?</h4>
+    <p>Select one of the three inline radio buttons :</p>
+    <div>
+        <form method="POST" action="/saveoptions">
+<!--            <div class="half">-->
+<!--                <input class="form-check-input" type="radio" name="radopt" value="png" >-->
+<!--                <label class="radio-inline" for="png">png</label>-->
+<!--            </div>-->
+<!--            <div class="half">-->
+<!--                <input class="form-check-input" type="radio" name="radopt" value="jpg">-->
+<!--                <label class="radio-inline" for="jpg"> jpg</label>-->
+<!--            </div>-->
+<!--            <div class="half">-->
+<!--                <input class="form-check-input" type="radio" name="radopt" value="pdf" >-->
+<!--                <label class="radio-inline" for="pdf">pdf </label>-->
+<!--            </div>-->
+<!--            <div class="half">-->
+<!--                <input class="form-check-input" type="radio" name="radopt" value="svg">-->
+<!--                <label class="radio-inline" for="svg"> svg</label>-->
+<!--            </div>-->
+            <p>
+                <label class="radio-inline">
+                  <input type="radio" name="radopt" value="png">png
+                </label>
+                <label class="radio-inline">
+                  <input type="radio" name="radopt" value="jpg">jpg
+                </label>
+                <label class="radio-inline">
+                  <input type="radio" name="radopt" value="svg">svg
+                </label>
+                <label class="radio-inline">
+                  <input type="radio" name="radopt" value="pdf">pdf
+                </label>
+            </p>
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+    <br>
+    <p>Go back to <a href="/">Home</a> page</p>
+
+
+
+
+<!--    <a href="data:image/png;base64, {{ op }}" download="Co-author_map">-->
+<!--        <img src="data:image/png ;base64,{{op|safe}}" />-->
+<!--    </a>-->
+    <br>
+<body>
+</html>

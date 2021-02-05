@@ -1,10 +1,51 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Author Map</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link rel="stylesheet" type="text/css" href="../static/layout.css"/>
 </head>
 <body>
-Hello world
+    <nav class="navbar navbar-inverse" role="navigation">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="/">Home</a>
+          <a class="navbar-brand" href="/about">About</a>
+        </div>
+      </div>
+    </nav>
+    <div style="text-align:center">
+        <h1 >&diams; Author Map &diams;</h1>
+        <h3 >  Author Information</h3>
+        <form method="POST" action="/info">
+            <input name="author" type="author" placeholder="Author's name" class="textbox">
+            <button type="submit" name="submit">Submit</button>
+        </form>
+
+        <div>
+            <h4>Results</h4>
+            {{msg}}
+            <form method="POST" action="/choose">
+                <ol>
+                    {% for element in res %}
+                    <li>
+                           {{element}} <input type="checkbox" name="check" value="{{element}}">
+                    </li>
+                    {% endfor %}
+                </ol>
+                <h4>{{next_msg}}</h4>
+                {% if next_msg %}
+                    <p>Please select any 2 co-authors from the network above and then press Submit
+                    </p>
+                        <button type="submit" name="submit">Submit</input>
+                {% endif %}
+             </form>
+            <br>
+        </div>
+        {{info}}
+    </div>
+
 </body>
 </html>
