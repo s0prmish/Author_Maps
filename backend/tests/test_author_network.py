@@ -1,5 +1,6 @@
 import unittest
 from backend.authormaps import author_network
+from backend.authormaps import startup
 import graphviz
 from os import path
 import os
@@ -33,7 +34,7 @@ class TestAuthorNetwork:
 
     def test_save_image(self):
         tg = author_network.AuthorNetwork(test_data)
-        savepath = "Authorgraph.pdf"
+        savepath = os.path.join(startup.DATA_DIR,"Authorgraph.pdf")
         if path.exists(savepath):
             os.remove(savepath)
         assert not path.exists(savepath)

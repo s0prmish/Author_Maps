@@ -78,6 +78,9 @@ class TestAuthorNetwork:
         assert type(content) == list
         assert content == ["A", "B"] or content == ["B", "A"]
 
+        for i,v in test_dict.items():
+            assert len(v)!=0
+
 
 if __name__ == '__main__':
     unittest.main()
