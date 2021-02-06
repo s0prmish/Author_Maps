@@ -1,9 +1,12 @@
-from flask import Flask, flash, request, redirect, url_for, render_template, session
-from authormaps.authorinfo import AuthorData
-from authormaps.author_network import AuthorNetwork
-from authormaps.networkutils import count_shared_publications
+import os
+import io
+import base64
+import graphviz
 from pathlib import Path
-import os, io, base64
+from authormaps.author_network import AuthorNetwork
+from authormaps.authorinfo import AuthorData
+from authormaps.networkutils import count_shared_publications
+from flask import Flask, request, render_template, session, send_file
 
 home_dir = str(Path.home())
 PROJECT_DIR = os.path.join(home_dir, ".project", "group5")
@@ -11,6 +14,13 @@ DATA_DIR = os.path.join(PROJECT_DIR, "data")
 
 app = Flask(__name__)
 app.secret_key = "someSecretKey"
+
+MIMETYPE = {
+    'jpg': 'image/jpeg',
+    'pdf': 'application/pdf',
+    'svg': 'image/svg+xml',
+    'png': 'image/png'
+}
 
 
 @app.route("/")
@@ -70,6 +80,7 @@ def coauthor_map():
 
                 if testobj is not None:
                     graph = testobj.graph
+                    session["graph_source"] = graph.source
                     chart_output = graph.pipe(format='png')
                     chart_output = base64.b64encode(chart_output).decode('utf-8')
                     return render_template('plot.html', op=chart_output,
@@ -93,24 +104,13 @@ def save_rendered_img():
 
     if request.method == 'POST':
         option = request.form['radopt']
-        print(option)
-
-        if option=='jpg':
-            print("selected option is jpg")
-            print(session["graph_obj"])
-#             session["graph_obj"].save_graph("jpg")
-        elif option=='pdf':
-            print("selected option is pdf")
-#             session["graph_obj"].save_graph("pdf")
-#         elif option=='svg':
-#             session["graph_obj"].save_graph("svg")
-#         elif option=='png':
-#             session["graph_obj"].save_graph("png")
-#         print("Saved")
-
-
-
-
+        graph = graphviz.Source(session["graph_source"])
+        return send_file(
+            io.BytesIO(graph.pipe(format=option)),
+            mimetype=MIMETYPE[option],
+            as_attachment=True,
+            attachment_filename=f'AuthorGraph.{option}'
+        )
 
 
 if __name__ == '__main__':
