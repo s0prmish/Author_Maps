@@ -21,22 +21,6 @@
     <p>Select one of the three inline radio buttons :</p>
     <div>
         <form method="POST" action="/saveoptions">
-<!--            <div class="half">-->
-<!--                <input class="form-check-input" type="radio" name="radopt" value="png" >-->
-<!--                <label class="radio-inline" for="png">png</label>-->
-<!--            </div>-->
-<!--            <div class="half">-->
-<!--                <input class="form-check-input" type="radio" name="radopt" value="jpg">-->
-<!--                <label class="radio-inline" for="jpg"> jpg</label>-->
-<!--            </div>-->
-<!--            <div class="half">-->
-<!--                <input class="form-check-input" type="radio" name="radopt" value="pdf" >-->
-<!--                <label class="radio-inline" for="pdf">pdf </label>-->
-<!--            </div>-->
-<!--            <div class="half">-->
-<!--                <input class="form-check-input" type="radio" name="radopt" value="svg">-->
-<!--                <label class="radio-inline" for="svg"> svg</label>-->
-<!--            </div>-->
             <p>
                 <label class="radio-inline">
                   <input type="radio" name="radopt" value="png">png
@@ -53,16 +37,10 @@
             </p>
             <input type="submit" value="Submit">
         </form>
+        {{savemsg}}
     </div>
     <br>
     <p>Go back to <a href="/">Home</a> page</p>
-
-
-
-
-<!--    <a href="data:image/png;base64, {{ op }}" download="Co-author_map">-->
-<!--        <img src="data:image/png ;base64,{{op|safe}}" />-->
-<!--    </a>-->
     <br>
 <body>
 </html>
