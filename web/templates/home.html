@@ -18,14 +18,20 @@
     </nav>
     <div style="text-align:center">
         <h1 >&diams; Author Map &diams;</h1>
-        <h3 >  Author Information</h3>
+        <h2 >  Author Information</h2>
         <form method="POST" action="/info">
             <input name="author" type="author" placeholder="Author's name" class="textbox">
             <button type="submit" name="submit">Submit</button>
         </form>
-
         <div>
-            <h4>Results</h4>
+            <h3>Results</h3>
+            {% with msg =get_flashed_messages() %}
+                {% if msg %}
+                    {% for m in msg %}
+                        <h4>{{ m }}</h4>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
             {{msg}}
             <form method="POST" action="/choose">
                 <ol>
