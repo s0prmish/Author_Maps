@@ -44,11 +44,14 @@ def display_data():
                                            next_msg='')
 
             else:
-                return render_template('home.html', msg="Please enter it in the specified format", res="",
-                                       next_msg='')  # I don't understand why this isn't working
+                return render_template('home.html', msg="Please enter the name in the specified format", res="",
+                                       next_msg='')
 
     except urllib.error.URLError:
         return render_template('home.html', msg="Please enter the name before clicking on Submit", res="",
+                               next_msg='')
+    except FileNotFoundError:
+        return render_template('home.html', msg="Please enter the name in the specified format", res="",
                                next_msg='')
 
 
