@@ -3,7 +3,7 @@
 > Initial project structure<br> 
 > CLI<br>
 > Team coordination (including code review, merge assisting, meeting facilitation, issues creation)<br>
-> Presentation slides 1-5
+> Presentation slides 1,2,4-6
 
 Merge requests:
 1. Initial project structure: https://gitlab-sysprog.informatik.uni-bonn.de/bschultz/group05/-/merge_requests/3
@@ -15,7 +15,7 @@ Team role: backend dev (data layer, including requests to PubMed, caching)
 
 Work done:
 > Task 1 - Finding the Shared Work for One Author (3 pts) <br>
-> Presentation slides 6-8
+> Presentation slides 7-9
 
 Merge requests:
 1. Task 1: https://gitlab-sysprog.informatik.uni-bonn.de/bschultz/group05/-/merge_requests/5
@@ -27,7 +27,7 @@ Work done:
 > Task 2 - Finding the Shared Work for All-Pairs of Authors (1 pt)<br>
 > Task 3 - Count Em Up (1 pt)<br>
 > Task 4 - Build a Network (2 pts)<br>
-> Presentation slides 9-13
+> Presentation slides 3,10-14
 
 Merge requests:
 1. Tasks 2-4: https://gitlab-sysprog.informatik.uni-bonn.de/bschultz/group05/-/merge_requests/4

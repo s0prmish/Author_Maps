@@ -1,3 +1,4 @@
 data/
+doc/
 .pytest_cache/
 *.egg-info/
