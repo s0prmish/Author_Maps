@@ -15,7 +15,7 @@ Team role: backend dev (data layer, including requests to PubMed, caching)
 
 Work done:
 > Task 1 - Finding the Shared Work for One Author (3 pts) <br>
-> Presentation slides 6-9
+> Presentation slides 6-8
 
 Merge requests:
 1. Task 1: https://gitlab-sysprog.informatik.uni-bonn.de/bschultz/group05/-/merge_requests/5
@@ -27,7 +27,7 @@ Work done:
 > Task 2 - Finding the Shared Work for All-Pairs of Authors (1 pt)<br>
 > Task 3 - Count Em Up (1 pt)<br>
 > Task 4 - Build a Network (2 pts)<br>
-> Presentation slides 10-13
+> Presentation slides 9-13
 
 Merge requests:
 1. Tasks 2-4: https://gitlab-sysprog.informatik.uni-bonn.de/bschultz/group05/-/merge_requests/4
