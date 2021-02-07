@@ -1,8 +1,9 @@
 from typing import Dict, Tuple
 
+import os
 import graphviz
 import math
-
+from authormaps import startup
 
 # Add wrapper for two author names
 
@@ -15,7 +16,7 @@ import math
 
 class AuthorNetwork:
     def __init__(self, shared_publications_counts: Dict[Tuple[str, str], int], enable_annotations: bool = True,
-                 max_penwidth=7):
+                 max_penwidth=7,highlight_authors=None):
         """
         Creates a author map as graphviz graph
         :param shared_publications_counts: Dictionary of tuples author names as key and the number of shared
@@ -25,9 +26,9 @@ class AuthorNetwork:
         :param max_penwidth: Maximum width of the edges in the graph. this will be the scale for all entries.
         """
         self.data = shared_publications_counts
-        self.graph = self.build_network(enable_annotations, max_penwidth=max_penwidth)
+        self.graph = self.build_network(enable_annotations, max_penwidth=max_penwidth,highlight_authors=highlight_authors)
 
-    def build_network(self, enable_annotations: bool = True, max_penwidth=7) -> graphviz.Graph:
+    def build_network(self, enable_annotations: bool = True, max_penwidth=7,highlight_authors=None) -> graphviz.Graph:
         """
         Creates a undirected graph from the given data. Also allows to turn off the annotation
         (numbers next to the edges and varying line thickness). The graphviz.Graph object is then returned.
@@ -38,6 +39,11 @@ class AuthorNetwork:
         graphobject = graphviz.Graph("Authornetwork")
 
         highest_number = max(self.data.values())
+
+        #Add highlighted authors befor they are added by edges
+        if highlight_authors!=None:
+            for a in highlight_authors:
+                graphobject.node(name=a,label=a,fillcolor="green", style="filled")
 
         # find top 10% of edges
         top_ten_counts = math.ceil(len(self.data.keys()) / 10)
@@ -73,7 +79,7 @@ class AuthorNetwork:
     # graph: graphviz.Graph,
     # Allow one to be able to export the network in several formats including png, jpg, svg, and pdf
 
-    def save_graph(self, output_format: str = "png", view=False):
+    def save_graph(self, output_format: str = "png", view=False, filename: str = None):
         # where save the graph? Cache?
 
         viable_formats = ["png", "jpg", "svg", "pdf"]
@@ -82,14 +88,17 @@ class AuthorNetwork:
             output_format = output_format[1:]
         if output_format not in viable_formats:
             return False
-        filename = "Authorgraph"
-        print(filename)
+
+
+        if not filename:
+            filename = os.path.join(startup.DATA_DIR, "Authorgraph")
+
         self.graph.render(filename, format=output_format, view=view, cleanup=True)  # os.path.join(folder,
-        print("Rendered")
         return True
 
 
-test_data = {("Ilya", "Marlo"): 3, ("Pragya", "Dhruv"): 4, ("Marlo", "Dhruv"): 2, ("Ilya", "Dhruv"): 1,
-             ("Pragya", "Ilya"): 7}
+#test_data = {("Ilya", "Marlo"): 3, ("Pragya", "Dhruv"): 4, ("Ilya", "Dhruv"): 1,
+            #("Pragya", "Ilya"): 7}
 
-
+#testnet=AuthorNetwork(test_data,highlight_authors=["Ilya","Pragya"])
+#testnet.save_graph("png")
