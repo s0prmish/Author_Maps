@@ -30,15 +30,20 @@ h1 {
     font-family: Castellar
     }
 
+h2 {
+    color:DodgerBlue;
+    font-size:200%;
+    font-family: Arial;
+    }
 
 h3 {
-    color:DodgerBlue;
-    font-size:180%;
+    color: cornsilk;
+    font-size:160%;
     font-family: Arial;
     }
 
 h4 {
-    color:DodgerBlue;
+    color: orangered;
     font-size:120%;
     font-family: Arial;
     }

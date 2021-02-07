@@ -105,7 +105,7 @@ class AuthorNetwork:
             return False
 
         if not filename:
-            filename = os.path.join(startup.DATA_DIR, "Authorgraph")
+            filename = os.path.join(startup.GRAPH_FOLDER, "Authorgraph")
 
         self.graph.render(filename, format=output_format, view=view, cleanup=True)  # os.path.join(folder,
         return True
