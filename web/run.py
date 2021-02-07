@@ -67,7 +67,10 @@ def coauthor_map():
                 coauthors = data.get_list_of_coauthors()
                 shared_publications = count_shared_publications(coauthors)
                 new = []
+                get_count=0
                 for i, k in shared_publications.items():
+                    if (i[0]==selected[0] and i[1]==selected[1]) or (i[1]==selected[0] and i[0]==selected[1]):
+                        get_count=k
                     new.append({"a1": i[0], "a2": i[1], "count": k})
 
                 testobj = AuthorNetwork(shared_publications,highlight_authors=[selected[0], selected[1]])
@@ -82,7 +85,8 @@ def coauthor_map():
                     chart_output = graph.pipe(format='png')
                     chart_output = base64.b64encode(chart_output).decode('utf-8')
                     return render_template('plot.html', op=chart_output,
-                                           info="The Co-author Network for {} and {}".format(selected[0], selected[1]))
+                                           info="The Co-author Network for {} and {}".format(selected[0], selected[1]),
+                                           ano="The total number of publications between {} and {} is : {}".format(selected[0], selected[1],get_count))
                 else:
                     return render_template('home.html',
                                            info="The co-author's {} and {} do not have any relationship".format(
@@ -114,30 +118,27 @@ def save_rendered_img():
             testobj = AuthorNetwork(shared_publications, highlight_authors=[session["author1"], session["author2"]])
 
             if option=='jpg':
-                print("selected option is jpg")
+                flash("The file has been saved as a .jpg!","info")
                 testobj.save_graph("jpg")
 
 
             elif option=='pdf':
-                print("selected option is pdf")
+                flash("The file has been saved as a .pdf!","info")
                 testobj.save_graph("pdf")
     #
             elif option=='svg':
-                print("selected option is svg")
+                flash("The file has been saved as a .svg!","info")
                 testobj.save_graph("svg")
 
             elif option=='png':
-                print("selected option is png")
+                flash("selected option is png.!","info")
                 testobj.save_graph("png")
 
-            else:
-                return render_template('plot.html', savemsg="Please select any file format before clicking on submit.")
-
-            print("Saved")
-            return render_template('plot.html', savemsg="File has been saved")
+            return render_template('home.html')
 
     except KeyError:
-        return render_template('plot.html', savemsg="Please select any file format before clicking on submit.")
+        flash("Please select a file format before clicking on submit.")
+        return render_template('home.html')
 
 
 
