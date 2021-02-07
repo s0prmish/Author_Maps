@@ -51,7 +51,7 @@ def display_data():
         return render_template('home.html', msg="Please enter the name before clicking on Submit", res="",
                                next_msg='')
     except FileNotFoundError:
-        return render_template('home.html', msg="Please enter the name in the specified format", res="",
+        return render_template('home.html', msg="The author {} has not been found".format(seq), res="",
                                next_msg='')
 
 
