@@ -62,11 +62,11 @@ class AuthorNetwork:
 
                 if authors in top_edges:
                     graphobject.edge(authors[0], authors[1], label=str(count),
-                                     penwidth=str((count / highest_number) * max_penwidth), color="#d7191c")
+                                     penwidth=str((0.5+(count / highest_number * max_penwidth))), color="#d7191c")
                 else:
                     # print(highest_number, count, max_penwidth)
                     graphobject.edge(authors[0], authors[1], label=str(count),
-                                     penwidth=str((count / highest_number) * max_penwidth), color="0 0 0.4")
+                                     penwidth=str((0.5+(count / highest_number * max_penwidth))), color="0 0 0.4")
             else:
                 graphobject.edge(authors[0], authors[1])
 
