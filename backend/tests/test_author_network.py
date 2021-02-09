@@ -20,7 +20,7 @@ class TestAuthorNetwork:
     def test_build_network(self):
         tg = author_network.AuthorNetwork(test_data)
         #print(tg.graph.source)
-        assert 'Ilya -- Marlo [label=3 color="0 0 0.4" penwidth=3.0]' in tg.graph.source
+        assert 'Ilya -- Marlo [label=3 color="0 0 0.4" penwidth=3.5]' in tg.graph.source
         # Non annotated test! Maybe prone to randomness?
         tgnoannotation = author_network.AuthorNetwork(test_data, enable_annotations=False)
         nonannotext = """
@@ -34,7 +34,7 @@ class TestAuthorNetwork:
 
     def test_save_image(self):
         tg = author_network.AuthorNetwork(test_data)
-        savepath = os.path.join(startup.DATA_DIR,"Authorgraph.pdf")
+        savepath = os.path.join(startup.GRAPH_FOLDER,"Authorgraph.pdf")
         if path.exists(savepath):
             os.remove(savepath)
         assert not path.exists(savepath)
